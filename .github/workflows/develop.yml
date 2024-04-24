@@ -35,3 +35,11 @@ jobs:
       - name: Terraform init
         id: init
         run: terraform init -backend-config="bucket=${{ vars.TFSTATE_BUCKET }}"
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -recursive
+
+      - name: Terraform plan
+        id: plan
+        run: terraform plan -no-color -var-file=terraform.tfvars
