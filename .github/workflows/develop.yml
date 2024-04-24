@@ -1,0 +1,12 @@
+name: Develop
+
+run-name: DevelopTerraform
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
