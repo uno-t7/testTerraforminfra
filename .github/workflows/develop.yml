@@ -6,6 +6,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - develop/**
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   terraform-plan:
@@ -15,7 +21,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: AWS Config
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ap-northeast-1
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ vars.TERRAFORM_VERSION }}
+
+      - name: Terraform init
+        id: init
+        run: terraform init -backend-config="bucket=${{ vars.TFSTATE_BUCKET }}"
