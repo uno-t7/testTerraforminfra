@@ -42,4 +42,4 @@ jobs:
 
       - name: Terraform plan
         id: plan
-        run: terraform plan -no-color -var-file=./terraform.tfvars
+        run: terraform plan -no-color -var-file=develop/terraform.tfvars
