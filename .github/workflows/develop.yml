@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - develop/**
+      - .github/workflows/develop.yml
 
 permissions:
   id-token: write
@@ -42,4 +43,4 @@ jobs:
 
       - name: Terraform plan
         id: plan
-        run: terraform plan -no-color -var-file=develop/terraform.tfvars
+        run: terraform plan -no-color -var-file=terraform.tfvars
