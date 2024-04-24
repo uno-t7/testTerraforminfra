@@ -17,6 +17,9 @@ permissions:
 jobs:
   terraform-plan:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: develop
     environment: develop
     steps:
       - name: Checkout
@@ -43,4 +46,4 @@ jobs:
 
       - name: Terraform plan
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -no-color -var-file=terraform.tfvars
