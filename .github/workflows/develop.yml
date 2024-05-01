@@ -3,9 +3,10 @@ name: Develop
 run-name: DevelopTerraform
 
 on:
+  # TODO: 開発中はpush
   push:
     branches:
-      - main
+      - develop
     paths:
       - develop/**
       - modules/**
