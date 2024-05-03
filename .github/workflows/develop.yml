@@ -4,13 +4,17 @@ run-name: DevelopTerraform
 
 on:
   # TODO: 開発中はpush
-  push:
+  pull_request:
     branches:
-      - develop
+      - main
     paths:
       - develop/**
       - modules/**
       - .github/workflows/develop.yml
+    types:
+      - opened
+      - closed
+      - synchronize
 
 permissions:
   id-token: write
