@@ -3,7 +3,6 @@ name: Develop
 run-name: DevelopTerraform
 
 on:
-  # TODO: 開発中はpush
   pull_request:
     branches:
       - main
@@ -60,7 +59,7 @@ jobs:
         working-directory: develop
     environment: develop
     needs: [terraform-plan]
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
