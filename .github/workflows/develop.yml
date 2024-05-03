@@ -3,7 +3,6 @@ name: Develop
 run-name: DevelopTerraform
 
 on:
-  # TODO: 開発中はpush
   pull_request:
     branches:
       - main
