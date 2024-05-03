@@ -3,13 +3,18 @@ name: Develop
 run-name: DevelopTerraform
 
 on:
-  push:
+  # TODO: 開発中はpush
+  pull_request:
     branches:
       - main
     paths:
       - develop/**
       - modules/**
       - .github/workflows/develop.yml
+    types:
+      - opened
+      - closed
+      - synchronize
 
 permissions:
   id-token: write
@@ -54,6 +59,8 @@ jobs:
       run:
         working-directory: develop
     environment: develop
+    needs: [terraform-plan]
+    # if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
